@@ -72,7 +72,16 @@ class MultitaskBERT(nn.Module):
                 param.requires_grad = True
         # You will want to add layers here to perform the downstream tasks.
         ### TODO
-        raise NotImplementedError
+
+        self.dropout = nn.Dropout(config.hidden_dropout_prob)
+
+        self.num_sentiment_labels = 5
+        self.proj_sentiment = nn.Linear(config.hidden_size, self.num_sentiment_labels)
+        self.num_paraphrase_outputs = 1
+        self.proj_paraphrase = nn.Linear(config.hidden_size, self.num_paraphrase_outputs)
+        self.num_similarity_outputs = 1
+        self.proj_similarity = nn.Linear(config.hidden_size, self.num_similarity_outputs)
+        # raise NotImplementedError
 
 
     def forward(self, input_ids, attention_mask):
@@ -82,7 +91,11 @@ class MultitaskBERT(nn.Module):
         # When thinking of improvements, you can later try modifying this
         # (e.g., by adding other layers).
         ### TODO
-        raise NotImplementedError
+
+        output = self.bert(input_ids, attention_mask)
+        return output['pooler_output']
+
+        # raise NotImplementedError
 
 
     def predict_sentiment(self, input_ids, attention_mask):
@@ -92,7 +105,10 @@ class MultitaskBERT(nn.Module):
         Thus, your output should contain 5 logits for each sentence.
         '''
         ### TODO
-        raise NotImplementedError
+
+        output = self.forward(input_ids, attention_mask)
+        return self.proj_sentiment(self.dropout(output))
+        # raise NotImplementedError
 
 
     def predict_paraphrase(self,
@@ -103,7 +119,10 @@ class MultitaskBERT(nn.Module):
         during evaluation.
         '''
         ### TODO
-        raise NotImplementedError
+
+        output = self.forward(input_ids, attention_mask)
+        return self.proj_paraphrase(self.dropout(output))
+        # raise NotImplementedError
 
 
     def predict_similarity(self,
@@ -113,7 +132,10 @@ class MultitaskBERT(nn.Module):
         Note that your output should be unnormalized (a logit).
         '''
         ### TODO
-        raise NotImplementedError
+
+        output = self.forward(input_ids, attention_mask)
+        return self.proj_similarity(self.dropout(output))
+        # raise NotImplementedError
 
 
 

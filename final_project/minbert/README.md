@@ -2,15 +2,17 @@
 
 This is the default final project for the Stanford CS 224N class. Please refer to the project handout on the course website for detailed instructions and an overview of the codebase.
 
-This project comprises two parts. In the first part, you will implement some important components of the BERT model to better understand its architecture. 
+This project comprises two parts. In the first part, you will implement some important components of the BERT model to better understand its architecture.
 In the second part, you will use the embeddings produced by your BERT model on three downstream tasks: sentiment classification, paraphrase detection, and semantic similarity. You will implement extensions to improve your model's performance on the three downstream tasks.
 
 In broad strokes, Part 1 of this project targets:
+
 * bert.py: Missing code blocks.
 * classifier.py: Missing code blocks.
 * optimizer.py: Missing code blocks.
 
 And Part 2 targets:
+
 * multitask_classifier.py: Missing code blocks.
 * datasets.py: Possibly useful functions/classes for extensions.
 * evaluation.py: Possibly useful functions/classes for extensions.
@@ -18,6 +20,16 @@ And Part 2 targets:
 ## Setup instructions
 
 Follow `setup.sh` to properly setup a conda environment and install dependencies.
+
+## Part 1 results
+
+Pretraining for SST: Dev Accuracy: 0.409
+
+Pretraining for CFIMDB: Dev Accuracy: 0.788
+
+Finetuning for SST: Dev Accuracy: 0.524
+
+Finetuning for CFIMDB: Dev Accuracy: 0.967
 
 ## Acknowledgement
 

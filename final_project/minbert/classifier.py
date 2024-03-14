@@ -48,7 +48,6 @@ class BertSentimentClassifier(torch.nn.Module):
 
         # Create any instance variables you need to classify the sentiment of BERT embeddings.
         ### TODO
-        self.dropout_prob = 0.1
         self.dropout = nn.Dropout(config.dropout_prob)
         self.proj = nn.Linear(config.hidden_size, self.num_labels)
         # raise NotImplementedError
